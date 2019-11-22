@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>商品一覧</h1>
+    <ul>
+      <li>
+        <article>
+          <h2>カレーライス</h2>
+          <img src="./images/image1.png" alt="" />
+          <p><button class="button">詳細を見る</button></p>
+        </article>
+      </li>
+    </ul>
+    <script>
+      // PortalElementが使えるかどうか
+      if ("HTMLPortalElement" in window) {
+        // PortalElementを作成
+        const portal = document.createElement("portal"); // 読込先をを指定
+        portal.src = "./item1.html";
+        // portalタグを挿入
+        document.body.appendChild(portal); // ボタンを取得
+
+        const button = document.querySelector(".button"); // クリックイベントを取得
+        button.addEventListener("click", event => {
+          // クリックイベントを無効
+          event.preventDefault(); // portalタグをアクティブ
+          portal.activate();
+        });
+      }
+    </script>
+  </body>
+</html>

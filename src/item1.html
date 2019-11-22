@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>カレーライスの詳細</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <section>
+      <h1>カレーライス</h1>
+      <img src="./images/image1.png" alt="" />
+      <p>お値段:500円</p>
+      <p><button class="back">戻る</button></p>
+    </section>
+    <script>
+      // PortalElementが使えるかどうか
+      if ("HTMLPortalElement" in window) {
+        // アクテベートされた時のイベント監視
+        window.addEventListener("portalactivate", event => {
+          // 呼び出し元をportalとして取得
+          const prevPortal = event.adoptPredecessor();
+          // 呼び出し元のportalをDOMに追加
+          document.body.appendChild(prevPortal);
+
+          // 戻るボタンを取得
+          const button = document.querySelector(".back");
+          //　戻るボタンのクリックイベント
+          button.addEventListener("click", e => {
+            // 呼び出し元をアクテベート
+            prevPortal.activate();
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
